@@ -44,6 +44,8 @@ As figuras ficam em [`resultados/`](resultados/).
 ## Estrutura
 - `processamento_imagens.ipynb` — notebook principal (roda no Colab ou localmente)
 - `src/pipeline.py` — funções do pipeline
+- `app.py` — aplicativo web (Streamlit) com o pipeline + análise por IA generativa (Gemini)
+- `src/ia.py` — integração com o Gemini (prompt e chamada da API)
 - `tests/` — testes (`python -m pytest`)
 - `dados/` — imagens NOIRLab usadas (Órion, Escorpião)
 - `legado/` — notebook exploratório inicial (Otsu, K-means, Watershed, nitidez)
@@ -59,3 +61,20 @@ pip install -r requirements.txt
 python -m pytest
 python construir_notebook.py
 ```
+
+## Aplicativo com IA generativa (Streamlit + Gemini)
+O app junta o nosso pipeline de processamento de imagens com uma IA generativa:
+
+1. O usuário escolhe uma foto de exemplo (Órion, Escorpião) ou envia a sua.
+2. O pipeline (FFT passa-faixa + limiar k·σ) detecta as estrelas e marca as principais.
+3. O **Gemini** recebe a foto marcada e a lista de posições/brilhos, e diz qual constelação é mais provável, com nível de confiança.
+4. Opcionalmente, o app compara com a IA vendo **só a foto original** (sem o pipeline), para mostrar o efeito do processamento.
+
+```bash
+pip install -r requirements.txt
+export GEMINI_API_KEY="sua-chave"   # gere em aistudio.google.com (nunca coloque a chave no código)
+streamlit run app.py
+```
+A chave também pode ser colada na barra lateral do app, ou guardada em `.streamlit/secrets.toml` (modelo em `.streamlit/secrets.toml.example`; esse arquivo está no `.gitignore`).
+O app usa `gemini-3.6-flash` por padrão e tenta modelos alternativos automaticamente em erros temporários ou quando o modelo não está disponível para a chave. Para definir o modelo principal, use `export GEMINI_MODEL="nome-do-modelo"` antes de iniciar o app.
+A IA pode errar: confira sempre com uma carta celeste.

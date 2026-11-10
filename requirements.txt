@@ -1,7 +1,10 @@
 numpy
-opencv-python
+opencv-python-headless
 matplotlib
 pytest
 nbformat
 nbconvert
 ipykernel
+streamlit
+google-genai
+pillow
