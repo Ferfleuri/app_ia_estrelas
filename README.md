@@ -1,13 +1,13 @@
 # Detecção de Estrelas em Imagens de Constelações (NOIRLab)
 
-Projeto da disciplina **Processamento de Imagens e Sinais** (Prof. Dr. Vinicius Santos Andrade).
+Projeto da disciplina **Processamento de Imagens e Sinais + IA Generativa** (Prof. Vinicius Santos Andrade e Patrick Pedreira Silva).
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IsaTiosso/processamento-imagens-lab/blob/main/processamento_imagens.ipynb)
 
 ## Integrantes
 * Fernando Fleuri Barbosa
 * Isabela Xavier Tiosso
-* Matheus Eduardo Nunhez
+* Lucas Pomini Galli 
 
 ## Problema
 Fotos de constelações têm milhares de estrelas fracas, Via Láctea, nebulosas, gradiente de fundo e ruído de sensor.
